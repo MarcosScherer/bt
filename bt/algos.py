@@ -216,6 +216,27 @@ class RunDaily(RunPeriod):
         if now.date() != date_to_compare.date():
             return True
         return False
+class RunDaily_v2(RunPeriod):
+
+    """
+    Returns True on day change.
+
+    Args:
+        * run_on_first_date (bool): determines if it runs the first time the algo is called
+        * run_on_end_of_period (bool): determines if it should run at the end of the period
+          or the beginning
+        * run_on_last_date (bool): determines if it runs on the last time the algo is called
+
+    Returns True if the target.now's day has changed
+    compared to the last(or next if run_on_end_of_period) date, if not returns False.
+    Useful for daily rebalancing strategies.
+
+    """
+
+    def compare_dates(self, now, date_to_compare):
+        if now.date() != date_to_compare.date():
+            return True
+        return True
 
 
 class RunWeekly(RunPeriod):
